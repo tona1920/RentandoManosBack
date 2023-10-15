@@ -5,6 +5,9 @@ const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
 
+//Importar rutas
+const userRoutes = require('./routes/userRotes');
+
 const port = process.env.PORT || 3000;
 
 app.use(logger('dev'));
@@ -18,7 +21,10 @@ app.disable('x-powered-by');
 
 app.set('port', port);
 
-server.listen(port, '127.0.0.1' || 'localhost', function(){
+//Llamar rutas
+userRoutes(app);
+
+server.listen(port, '192.168.0.14' || 'localhost', function(){
     console.log('Aplicacion iniciada en el puerto: ' + port);
 });
 
